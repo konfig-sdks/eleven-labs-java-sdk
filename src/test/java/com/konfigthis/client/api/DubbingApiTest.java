@@ -18,6 +18,7 @@ import com.konfigthis.client.ApiException;
 import com.konfigthis.client.Configuration;
 import com.konfigthis.client.model.BodyDubAVideoOrAnAudioFileV1DubbingPost;
 import com.konfigthis.client.model.DoDubbingResponseModel;
+import com.konfigthis.client.model.DubbingMetadataResponse;
 import java.io.File;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -108,7 +109,7 @@ public class DubbingApiTest {
     /**
      * Get Dubbed File
      *
-     * Returns dubbed file.
+     * Returns dubbed file as a streamed file. Videos will be returned in MP4 format and audio only dubs will be returned in MP3.
      *
      * @throws ApiException if the Api call fails
      */
@@ -117,7 +118,7 @@ public class DubbingApiTest {
         String dubbingId = null;
         String languageCode = null;
         String xiApiKey = null;
-        Object response = api.getFile(dubbingId, languageCode)
+        api.getFile(dubbingId, languageCode)
                 .xiApiKey(xiApiKey)
                 .execute();
         // TODO: test validations
@@ -134,7 +135,7 @@ public class DubbingApiTest {
     public void getProjectMetadataTest() throws ApiException {
         String dubbingId = null;
         String xiApiKey = null;
-        Object response = api.getProjectMetadata(dubbingId)
+        DubbingMetadataResponse response = api.getProjectMetadata(dubbingId)
                 .xiApiKey(xiApiKey)
                 .execute();
         // TODO: test validations

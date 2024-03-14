@@ -158,4 +158,12 @@ public class SubscriptionResponseModelTest {
         // TODO: test status
     }
 
+    /**
+     * Test the property 'billingPeriod'
+     */
+    @Test
+    public void billingPeriodTest() {
+        // TODO: test billingPeriod
+    }
+
 }

@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import com.konfigthis.client.model.BodyDubAVideoOrAnAudioFileV1DubbingPost;
 import com.konfigthis.client.model.DoDubbingResponseModel;
+import com.konfigthis.client.model.DubbingMetadataResponse;
 import java.io.File;
 
 import java.lang.reflect.Type;
@@ -726,17 +727,15 @@ public class DubbingApiGenerated {
     }
 
 
-    private ApiResponse<Object> getFileWithHttpInfo(String dubbingId, String languageCode, String xiApiKey) throws ApiException {
+    private ApiResponse<Void> getFileWithHttpInfo(String dubbingId, String languageCode, String xiApiKey) throws ApiException {
         okhttp3.Call localVarCall = getFileValidateBeforeCall(dubbingId, languageCode, xiApiKey, null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarApiClient.execute(localVarCall);
     }
 
-    private okhttp3.Call getFileAsync(String dubbingId, String languageCode, String xiApiKey, final ApiCallback<Object> _callback) throws ApiException {
+    private okhttp3.Call getFileAsync(String dubbingId, String languageCode, String xiApiKey, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getFileValidateBeforeCall(dubbingId, languageCode, xiApiKey, _callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
@@ -778,7 +777,6 @@ public class DubbingApiGenerated {
 
         /**
          * Execute getFile request
-         * @return Object
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -786,14 +784,13 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public Object execute() throws ApiException {
-            ApiResponse<Object> localVarResp = getFileWithHttpInfo(dubbingId, languageCode, xiApiKey);
-            return localVarResp.getResponseBody();
+        public void execute() throws ApiException {
+            getFileWithHttpInfo(dubbingId, languageCode, xiApiKey);
         }
 
         /**
          * Execute getFile request with HTTP info returned
-         * @return ApiResponse&lt;Object&gt;
+         * @return ApiResponse&lt;Void&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -801,7 +798,7 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
             return getFileWithHttpInfo(dubbingId, languageCode, xiApiKey);
         }
 
@@ -816,14 +813,14 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
             return getFileAsync(dubbingId, languageCode, xiApiKey, _callback);
         }
     }
 
     /**
      * Get Dubbed File
-     * Returns dubbed file.
+     * Returns dubbed file as a streamed file. Videos will be returned in MP4 format and audio only dubs will be returned in MP3.
      * @param dubbingId ID of the dubbing project. (required)
      * @param languageCode ID of the language. (required)
      * @return GetFileRequestBuilder
@@ -903,16 +900,16 @@ public class DubbingApiGenerated {
     }
 
 
-    private ApiResponse<Object> getProjectMetadataWithHttpInfo(String dubbingId, String xiApiKey) throws ApiException {
+    private ApiResponse<DubbingMetadataResponse> getProjectMetadataWithHttpInfo(String dubbingId, String xiApiKey) throws ApiException {
         okhttp3.Call localVarCall = getProjectMetadataValidateBeforeCall(dubbingId, xiApiKey, null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<DubbingMetadataResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getProjectMetadataAsync(String dubbingId, String xiApiKey, final ApiCallback<Object> _callback) throws ApiException {
+    private okhttp3.Call getProjectMetadataAsync(String dubbingId, String xiApiKey, final ApiCallback<DubbingMetadataResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getProjectMetadataValidateBeforeCall(dubbingId, xiApiKey, _callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        Type localVarReturnType = new TypeToken<DubbingMetadataResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -953,7 +950,7 @@ public class DubbingApiGenerated {
 
         /**
          * Execute getProjectMetadata request
-         * @return Object
+         * @return DubbingMetadataResponse
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -961,14 +958,14 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public Object execute() throws ApiException {
-            ApiResponse<Object> localVarResp = getProjectMetadataWithHttpInfo(dubbingId, xiApiKey);
+        public DubbingMetadataResponse execute() throws ApiException {
+            ApiResponse<DubbingMetadataResponse> localVarResp = getProjectMetadataWithHttpInfo(dubbingId, xiApiKey);
             return localVarResp.getResponseBody();
         }
 
         /**
          * Execute getProjectMetadata request with HTTP info returned
-         * @return ApiResponse&lt;Object&gt;
+         * @return ApiResponse&lt;DubbingMetadataResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -976,7 +973,7 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<DubbingMetadataResponse> executeWithHttpInfo() throws ApiException {
             return getProjectMetadataWithHttpInfo(dubbingId, xiApiKey);
         }
 
@@ -991,7 +988,7 @@ public class DubbingApiGenerated {
             <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<DubbingMetadataResponse> _callback) throws ApiException {
             return getProjectMetadataAsync(dubbingId, xiApiKey, _callback);
         }
     }

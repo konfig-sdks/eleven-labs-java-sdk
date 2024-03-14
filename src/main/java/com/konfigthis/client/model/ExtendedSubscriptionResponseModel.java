@@ -216,6 +216,57 @@ public class ExtendedSubscriptionResponseModel {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
+  /**
+   * Gets or Sets billingPeriod
+   */
+  @JsonAdapter(BillingPeriodEnum.Adapter.class)
+ public enum BillingPeriodEnum {
+    MONTHLY_PERIOD("monthly_period"),
+    
+    ANNUAL_PERIOD("annual_period");
+
+    private String value;
+
+    BillingPeriodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static BillingPeriodEnum fromValue(String value) {
+      for (BillingPeriodEnum b : BillingPeriodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<BillingPeriodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final BillingPeriodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public BillingPeriodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return BillingPeriodEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_BILLING_PERIOD = "billing_period";
+  @SerializedName(SERIALIZED_NAME_BILLING_PERIOD)
+  private BillingPeriodEnum billingPeriod;
+
   public static final String SERIALIZED_NAME_NEXT_INVOICE = "next_invoice";
   @SerializedName(SERIALIZED_NAME_NEXT_INVOICE)
   private InvoiceResponseModel nextInvoice;
@@ -662,6 +713,35 @@ public class ExtendedSubscriptionResponseModel {
   }
 
 
+  public ExtendedSubscriptionResponseModel billingPeriod(BillingPeriodEnum billingPeriod) {
+    
+    
+    
+    
+    this.billingPeriod = billingPeriod;
+    return this;
+  }
+
+   /**
+   * Get billingPeriod
+   * @return billingPeriod
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public BillingPeriodEnum getBillingPeriod() {
+    return billingPeriod;
+  }
+
+
+  public void setBillingPeriod(BillingPeriodEnum billingPeriod) {
+    
+    
+    
+    this.billingPeriod = billingPeriod;
+  }
+
+
   public ExtendedSubscriptionResponseModel nextInvoice(InvoiceResponseModel nextInvoice) {
     
     
@@ -789,6 +869,7 @@ public class ExtendedSubscriptionResponseModel {
         Objects.equals(this.canUseProfessionalVoiceCloning, extendedSubscriptionResponseModel.canUseProfessionalVoiceCloning) &&
         Objects.equals(this.currency, extendedSubscriptionResponseModel.currency) &&
         Objects.equals(this.status, extendedSubscriptionResponseModel.status) &&
+        Objects.equals(this.billingPeriod, extendedSubscriptionResponseModel.billingPeriod) &&
         Objects.equals(this.nextInvoice, extendedSubscriptionResponseModel.nextInvoice) &&
         Objects.equals(this.hasOpenInvoices, extendedSubscriptionResponseModel.hasOpenInvoices)&&
         Objects.equals(this.additionalProperties, extendedSubscriptionResponseModel.additionalProperties);
@@ -796,7 +877,7 @@ public class ExtendedSubscriptionResponseModel {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tier, characterCount, characterLimit, canExtendCharacterLimit, allowedToExtendCharacterLimit, nextCharacterCountResetUnix, voiceLimit, maxVoiceAddEdits, voiceAddEditCounter, professionalVoiceLimit, canExtendVoiceLimit, canUseInstantVoiceCloning, canUseProfessionalVoiceCloning, currency, status, nextInvoice, hasOpenInvoices, additionalProperties);
+    return Objects.hash(tier, characterCount, characterLimit, canExtendCharacterLimit, allowedToExtendCharacterLimit, nextCharacterCountResetUnix, voiceLimit, maxVoiceAddEdits, voiceAddEditCounter, professionalVoiceLimit, canExtendVoiceLimit, canUseInstantVoiceCloning, canUseProfessionalVoiceCloning, currency, status, billingPeriod, nextInvoice, hasOpenInvoices, additionalProperties);
   }
 
   @Override
@@ -818,6 +899,7 @@ public class ExtendedSubscriptionResponseModel {
     sb.append("    canUseProfessionalVoiceCloning: ").append(toIndentedString(canUseProfessionalVoiceCloning)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    billingPeriod: ").append(toIndentedString(billingPeriod)).append("\n");
     sb.append("    nextInvoice: ").append(toIndentedString(nextInvoice)).append("\n");
     sb.append("    hasOpenInvoices: ").append(toIndentedString(hasOpenInvoices)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
@@ -858,6 +940,7 @@ public class ExtendedSubscriptionResponseModel {
     openapiFields.add("can_use_professional_voice_cloning");
     openapiFields.add("currency");
     openapiFields.add("status");
+    openapiFields.add("billing_period");
     openapiFields.add("next_invoice");
     openapiFields.add("has_open_invoices");
 
@@ -878,6 +961,7 @@ public class ExtendedSubscriptionResponseModel {
     openapiRequiredFields.add("can_use_professional_voice_cloning");
     openapiRequiredFields.add("currency");
     openapiRequiredFields.add("status");
+    openapiRequiredFields.add("billing_period");
     openapiRequiredFields.add("next_invoice");
     openapiRequiredFields.add("has_open_invoices");
   }
@@ -909,6 +993,9 @@ public class ExtendedSubscriptionResponseModel {
       }
       if (!jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      if (!jsonObj.get("billing_period").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `billing_period` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billing_period").toString()));
       }
       // validate the required field `next_invoice`
       InvoiceResponseModel.validateJsonObject(jsonObj.getAsJsonObject("next_invoice"));

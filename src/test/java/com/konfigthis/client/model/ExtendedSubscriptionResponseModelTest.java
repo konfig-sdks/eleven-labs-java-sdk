@@ -160,6 +160,14 @@ public class ExtendedSubscriptionResponseModelTest {
     }
 
     /**
+     * Test the property 'billingPeriod'
+     */
+    @Test
+    public void billingPeriodTest() {
+        // TODO: test billingPeriod
+    }
+
+    /**
      * Test the property 'nextInvoice'
      */
     @Test

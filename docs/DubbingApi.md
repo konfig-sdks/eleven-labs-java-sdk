@@ -254,11 +254,11 @@ No authorization required
 
 <a name="getFile"></a>
 # **getFile**
-> Object getFile(dubbingId, languageCode).xiApiKey(xiApiKey).execute();
+> getFile(dubbingId, languageCode).xiApiKey(xiApiKey).execute();
 
 Get Dubbed File
 
-Returns dubbed file.
+Returns dubbed file as a streamed file. Videos will be returned in MP4 format and audio only dubs will be returned in MP3.
 
 ### Example
 ```java
@@ -282,7 +282,7 @@ public class Example {
     String languageCode = "languageCode_example"; // ID of the language.
     String xiApiKey = "xiApiKey_example"; // Your API key. This is required by most endpoints to access our API programatically. You can view your xi-api-key using the 'Profile' tab on the website.
     try {
-      Object result = client
+      client
               .dubbing
               .getFile(dubbingId, languageCode)
               .xiApiKey(xiApiKey)
@@ -297,16 +297,11 @@ public class Example {
 
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
-      ApiResponse<Object> response = client
+      client
               .dubbing
               .getFile(dubbingId, languageCode)
               .xiApiKey(xiApiKey)
               .executeWithHttpInfo();
-      System.out.println(response.getResponseBody());
-      System.out.println(response.getResponseHeaders());
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getRoundTripTime());
-      System.out.println(response.getRequest());
     } catch (ApiException e) {
       System.err.println("Exception when calling DubbingApi#getFile");
       System.err.println("Status code: " + e.getStatusCode());
@@ -329,7 +324,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+null (empty response body)
 
 ### Authorization
 
@@ -347,7 +342,7 @@ No authorization required
 
 <a name="getProjectMetadata"></a>
 # **getProjectMetadata**
-> Object getProjectMetadata(dubbingId).xiApiKey(xiApiKey).execute();
+> DubbingMetadataResponse getProjectMetadata(dubbingId).xiApiKey(xiApiKey).execute();
 
 Get Dubbing Project Metadata
 
@@ -374,11 +369,17 @@ public class Example {
     String dubbingId = "dubbingId_example"; // ID of the dubbing project.
     String xiApiKey = "xiApiKey_example"; // Your API key. This is required by most endpoints to access our API programatically. You can view your xi-api-key using the 'Profile' tab on the website.
     try {
-      Object result = client
+      DubbingMetadataResponse result = client
               .dubbing
               .getProjectMetadata(dubbingId)
               .xiApiKey(xiApiKey)
               .execute();
+      System.out.println(result);
+      System.out.println(result.getDubbingId());
+      System.out.println(result.getName());
+      System.out.println(result.getStatus());
+      System.out.println(result.getError());
+      System.out.println(result.getTargetLanguages());
     } catch (ApiException e) {
       System.err.println("Exception when calling DubbingApi#getProjectMetadata");
       System.err.println("Status code: " + e.getStatusCode());
@@ -389,7 +390,7 @@ public class Example {
 
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
-      ApiResponse<Object> response = client
+      ApiResponse<DubbingMetadataResponse> response = client
               .dubbing
               .getProjectMetadata(dubbingId)
               .xiApiKey(xiApiKey)
@@ -420,7 +421,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+[**DubbingMetadataResponse**](DubbingMetadataResponse.md)
 
 ### Authorization
 

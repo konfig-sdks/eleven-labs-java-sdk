@@ -1,4 +1,4 @@
-<div align="center">
+<div align="left">
 
 [![Visit Elevenlabs](./header.png)](https://elevenlabs.com)
 
@@ -248,6 +248,7 @@ Class | Method | HTTP request | Description
  - [ChapterSnapshotsResponseModel](docs/ChapterSnapshotsResponseModel.md)
  - [ChapterStatisticsResponseModel](docs/ChapterStatisticsResponseModel.md)
  - [DoDubbingResponseModel](docs/DoDubbingResponseModel.md)
+ - [DubbingMetadataResponse](docs/DubbingMetadataResponse.md)
  - [ExtendedSubscriptionResponseModel](docs/ExtendedSubscriptionResponseModel.md)
  - [FeedbackResponseModel](docs/FeedbackResponseModel.md)
  - [FineTuningResponseModel](docs/FineTuningResponseModel.md)

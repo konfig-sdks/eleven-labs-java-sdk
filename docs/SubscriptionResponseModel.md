@@ -22,6 +22,7 @@
 |**canUseProfessionalVoiceCloning** | **Boolean** |  |  |
 |**currency** | [**CurrencyEnum**](#CurrencyEnum) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
+|**billingPeriod** | [**BillingPeriodEnum**](#BillingPeriodEnum) |  |  |
 
 
 
@@ -46,6 +47,15 @@
 | CANCELED | &quot;canceled&quot; |
 | UNPAID | &quot;unpaid&quot; |
 | FREE | &quot;free&quot; |
+
+
+
+## Enum: BillingPeriodEnum
+
+| Name | Value |
+|---- | -----|
+| MONTHLY_PERIOD | &quot;monthly_period&quot; |
+| ANNUAL_PERIOD | &quot;annual_period&quot; |
 
 
 

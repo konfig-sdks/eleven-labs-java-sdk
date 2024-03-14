@@ -153,6 +153,7 @@ public class Example {
       System.out.println(result.getCanUseProfessionalVoiceCloning());
       System.out.println(result.getCurrency());
       System.out.println(result.getStatus());
+      System.out.println(result.getBillingPeriod());
       System.out.println(result.getNextInvoice());
       System.out.println(result.getHasOpenInvoices());
     } catch (ApiException e) {

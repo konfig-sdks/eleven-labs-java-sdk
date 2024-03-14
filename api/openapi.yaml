@@ -2508,7 +2508,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DubbingGetProjectMetadataResponse'
+                $ref: '#/components/schemas/DubbingMetadataResponse'
           description: Successful Response
         "422":
           content:
@@ -2525,7 +2525,8 @@ paths:
       x-accepts: application/json
   /v1/dubbing/{dubbing_id}/audio/{language_code}:
     get:
-      description: Returns dubbed file.
+      description: Returns dubbed file as a streamed file. Videos will be returned
+        in MP4 format and audio only dubs will be returned in MP3.
       operationId: Dubbing_getFile
       parameters:
       - description: ID of the dubbing project.
@@ -2564,10 +2565,6 @@ paths:
         style: simple
       responses:
         "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DubbingGetFileResponse'
           description: Successful Response
         "422":
           content:
@@ -3836,8 +3833,45 @@ components:
       title: DoDubbingResponseModel
       type: object
       x-konfig-is-used-in-successful-response: true
+    DubbingMetadataResponse:
+      example:
+        target_languages:
+        - target_languages
+        - target_languages
+        name: name
+        error: error
+        dubbing_id: dubbing_id
+        status: status
+      properties:
+        dubbing_id:
+          title: Dubbing Id
+          type: string
+        name:
+          title: Name
+          type: string
+        status:
+          title: Status
+          type: string
+        error:
+          title: Error
+          type: string
+        target_languages:
+          items:
+            type: string
+          title: Target Languages
+          type: array
+      required:
+      - dubbing_id
+      - error
+      - name
+      - status
+      - target_languages
+      title: DubbingMetadataResponse
+      type: object
+      x-konfig-is-used-in-successful-response: true
     ExtendedSubscriptionResponseModel:
       example:
+        billing_period: monthly_period
         next_invoice:
           amount_due_cents: 9
           next_payment_attempt_unix: 3
@@ -3915,6 +3949,12 @@ components:
           - free
           title: Status
           type: string
+        billing_period:
+          enum:
+          - monthly_period
+          - annual_period
+          title: Billing Period
+          type: string
         next_invoice:
           $ref: '#/components/schemas/InvoiceResponseModel'
         has_open_invoices:
@@ -3922,6 +3962,7 @@ components:
           type: boolean
       required:
       - allowed_to_extend_character_limit
+      - billing_period
       - can_extend_character_limit
       - can_extend_voice_limit
       - can_use_instant_voice_cloning
@@ -5399,6 +5440,7 @@ components:
       x-konfig-is-used-in-successful-response: true
     SubscriptionResponseModel:
       example:
+        billing_period: monthly_period
         character_limit: 6
         can_use_instant_voice_cloning: true
         allowed_to_extend_character_limit: true
@@ -5472,8 +5514,15 @@ components:
           - free
           title: Status
           type: string
+        billing_period:
+          enum:
+          - monthly_period
+          - annual_period
+          title: Billing Period
+          type: string
       required:
       - allowed_to_extend_character_limit
+      - billing_period
       - can_extend_character_limit
       - can_extend_voice_limit
       - can_use_instant_voice_cloning
@@ -5497,6 +5546,7 @@ components:
         is_onboarding_completed: true
         can_use_delayed_payment_methods: true
         subscription:
+          billing_period: monthly_period
           character_limit: 6
           can_use_instant_voice_cloning: true
           allowed_to_extend_character_limit: true
@@ -6219,20 +6269,6 @@ components:
       x-konfig-original-example: {}
       x-konfig-generated-schema: konfig-generated-schema-components-schemas-DubbingDeleteProjectResponse
       x-konfig-is-used-in-successful-response: true
-    DubbingGetProjectMetadataResponse:
-      example: {}
-      properties: {}
-      type: object
-      x-konfig-original-example: {}
-      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DubbingGetProjectMetadataResponse
-      x-konfig-is-used-in-successful-response: true
-    DubbingGetFileResponse:
-      example: {}
-      properties: {}
-      type: object
-      x-konfig-original-example: {}
-      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DubbingGetFileResponse
-      x-konfig-is-used-in-successful-response: true
     ModelsListAvailableModelsResponse:
       items:
         $ref: '#/components/schemas/ModelResponseModel'
@@ -6423,16 +6459,6 @@ components:
       type: object
       x-do-not-generate: true
     konfig-generated-schema-components-schemas-DubbingDeleteProjectResponse:
-      example: {}
-      properties: {}
-      type: object
-      x-do-not-generate: true
-    konfig-generated-schema-components-schemas-DubbingGetProjectMetadataResponse:
-      example: {}
-      properties: {}
-      type: object
-      x-do-not-generate: true
-    konfig-generated-schema-components-schemas-DubbingGetFileResponse:
       example: {}
       properties: {}
       type: object
