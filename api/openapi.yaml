@@ -18,6 +18,7 @@ tags:
   name: projects
 - description: Access to voices created either by you or us.
   name: voices
+- name: admin
 - description: Accesses your speech history. Your speech history is a list of all
     your created audio including its metadata using our text-to-speech and speech-to-speech
     models.
@@ -517,7 +518,7 @@ paths:
           pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
           pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
           pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-          pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+          pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
           ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
         explode: true
         in: query
@@ -536,7 +537,7 @@ paths:
             pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
             pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
             pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
             ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
           example: mp3_44100_128
           title: Output format of the generated audio.
@@ -645,7 +646,7 @@ paths:
           pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
           pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
           pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-          pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+          pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
           ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
         explode: true
         in: query
@@ -664,7 +665,7 @@ paths:
             pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
             pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
             pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
             ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
           example: mp3_44100_128
           title: Output format of the generated audio.
@@ -2926,6 +2927,187 @@ paths:
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--v1-pronunciation-dictionaries-add-from-file
       x-content-type: multipart/form-data
       x-accepts: application/json
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/update:
+    post:
+      operationId: Admin_editVanityLink
+      parameters:
+      - explode: false
+        in: path
+        name: vanity_link_id
+        required: true
+        schema:
+          title: Vanity Link Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminEditVanityLinkResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Edit Vanity Link
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-vanity-link-vanity_link_id-update
+      x-content-type: application/json
+      x-accepts: application/json
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete:
+    post:
+      operationId: Admin_removeVanityLink
+      parameters:
+      - explode: false
+        in: path
+        name: vanity_link_id
+        required: true
+        schema:
+          title: Vanity Link Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminRemoveVanityLinkResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Delete Vanity Link
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-vanity-link-vanity_link_id-delete
+      x-accepts: application/json
+  /admin/n8enylacgd/vanity-links:
+    get:
+      operationId: Admin_getAllVanityLinks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetAllVanityLinksResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Get All Vanity Links
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-vanity-links
+      x-accepts: application/json
+  /admin/n8enylacgd/vanity-link/{slug}:
+    get:
+      operationId: Admin_getVanityLink
+      parameters:
+      - explode: false
+        in: path
+        name: slug
+        required: true
+        schema:
+          title: Slug
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetVanityLinkResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Get Vanity Link
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-vanity-link-slug
+      x-accepts: application/json
+  /admin/n8enylacgd/coupon/{promocode}/archive:
+    post:
+      operationId: Admin_archiveCouponPromocodePost
+      parameters:
+      - explode: false
+        in: path
+        name: promocode
+        required: true
+        schema:
+          title: Promocode
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminArchiveCouponPromocodePostResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Archive Coupon
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-coupon-promocode-archive
+      x-accepts: application/json
+  /admin/n8enylacgd/coupons:
+    get:
+      operationId: Admin_getAllCoupons
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetAllCouponsResponse'
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+          x-do-not-generate: true
+      summary: Get All Coupons
+      tags:
+      - admin
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-coupons
+      x-accepts: application/json
   /docs:
     get:
       operationId: Redirect_toMintlifyDocsGet
@@ -3686,6 +3868,27 @@ components:
       required:
       - pronunciation_dictionary_locators
       title: Body_Update_Pronunciation_Dictionaries_v1_projects__project_id__update_pronunciation_dictionaries_post
+      type: object
+    Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post:
+      properties:
+        vanity_slug:
+          description: "The new slug for the vanity link. For example, if you want\
+            \ the vanity link to be /blog/NEW_SLUG, enter NEW_SLUG."
+          title: Vanity Slug
+          type: string
+        target_url:
+          description: The new URL that the vanity link should redirect to.
+          title: Target URL
+          type: string
+        comment:
+          description: A new comment or description for the vanity link.
+          title: Comment
+          type: string
+      required:
+      - comment
+      - target_url
+      - vanity_slug
+      title: Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post
       type: object
     ChapterResponseModel:
       example:
@@ -6275,6 +6478,48 @@ components:
       title: Response Get Models V1 Models Get
       type: array
       x-konfig-is-used-in-successful-response: true
+    AdminEditVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminEditVanityLinkResponse
+      x-konfig-is-used-in-successful-response: true
+    AdminRemoveVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminRemoveVanityLinkResponse
+      x-konfig-is-used-in-successful-response: true
+    AdminGetAllVanityLinksResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminGetAllVanityLinksResponse
+      x-konfig-is-used-in-successful-response: true
+    AdminGetVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminGetVanityLinkResponse
+      x-konfig-is-used-in-successful-response: true
+    AdminArchiveCouponPromocodePostResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminArchiveCouponPromocodePostResponse
+      x-konfig-is-used-in-successful-response: true
+    AdminGetAllCouponsResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-AdminGetAllCouponsResponse
+      x-konfig-is-used-in-successful-response: true
     RedirectToMintlifyDocsGetResponse:
       example: {}
       properties: {}
@@ -6459,6 +6704,36 @@ components:
       type: object
       x-do-not-generate: true
     konfig-generated-schema-components-schemas-DubbingDeleteProjectResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminEditVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminRemoveVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminGetAllVanityLinksResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminGetVanityLinkResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminArchiveCouponPromocodePostResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-AdminGetAllCouponsResponse:
       example: {}
       properties: {}
       type: object
@@ -6677,7 +6952,7 @@ components:
             pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
             pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
             pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
             ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
           example: mp3_44100_128
           title: Output format of the generated audio.
@@ -6765,7 +7040,7 @@ components:
             pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
             pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
             pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
-            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.
+            pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.
             ulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.
           example: mp3_44100_128
           title: Output format of the generated audio.
@@ -8105,6 +8380,76 @@ components:
       x-do-not-generate: true
       x-konfig-is-parameter:
       - xi-api-key
+    konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-vanity-link-vanity_link_id-update:
+      properties:
+        vanity_link_id:
+          title: Vanity Link Id
+          type: string
+        vanity_slug:
+          description: "The new slug for the vanity link. For example, if you want\
+            \ the vanity link to be /blog/NEW_SLUG, enter NEW_SLUG."
+          title: Vanity Slug
+          type: string
+        target_url:
+          description: The new URL that the vanity link should redirect to.
+          title: Target URL
+          type: string
+        comment:
+          description: A new comment or description for the vanity link.
+          title: Comment
+          type: string
+      required:
+      - comment
+      - target_url
+      - vanity_link_id
+      - vanity_slug
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - vanity_link_id
+    konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-vanity-link-vanity_link_id-delete:
+      properties:
+        vanity_link_id:
+          title: Vanity Link Id
+          type: string
+      required:
+      - vanity_link_id
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - vanity_link_id
+    konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-vanity-links:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-vanity-link-slug:
+      properties:
+        slug:
+          title: Slug
+          type: string
+      required:
+      - slug
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - slug
+    konfig-generated-schema-single-parameter-schema-post--admin-n8enylacgd-coupon-promocode-archive:
+      properties:
+        promocode:
+          title: Promocode
+          type: string
+      required:
+      - promocode
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - promocode
+    konfig-generated-schema-single-parameter-schema-get--admin-n8enylacgd-coupons:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
     konfig-generated-schema-single-parameter-schema-get--docs:
       properties: {}
       type: object

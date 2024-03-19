@@ -1,6 +1,7 @@
 package com.konfigthis.client;
 
 import com.konfigthis.client.api.PronunciationDictionaryApi;
+import com.konfigthis.client.api.AdminApi;
 import com.konfigthis.client.api.AudioNativeApi;
 import com.konfigthis.client.api.DubbingApi;
 import com.konfigthis.client.api.ModelsApi;
@@ -18,6 +19,7 @@ import com.konfigthis.client.api.WorkspaceApi;
 public class ElevenLabs {
     private ApiClient apiClient;
     public final PronunciationDictionaryApi pronunciationDictionary;
+    public final AdminApi admin;
     public final AudioNativeApi audioNative;
     public final DubbingApi dubbing;
     public final ModelsApi models;
@@ -39,6 +41,7 @@ public class ElevenLabs {
     public ElevenLabs(Configuration configuration) {
         this.apiClient = new ApiClient(null, configuration);
         this.pronunciationDictionary = new PronunciationDictionaryApi(this.apiClient);
+        this.admin = new AdminApi(this.apiClient);
         this.audioNative = new AudioNativeApi(this.apiClient);
         this.dubbing = new DubbingApi(this.apiClient);
         this.models = new ModelsApi(this.apiClient);

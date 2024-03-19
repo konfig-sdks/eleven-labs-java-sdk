@@ -122,6 +122,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyCreatesAudioNativeEnabledProjectV1AudioNativePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyDownloadHistoryItemsV1HistoryDownloadPost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyDubAVideoOrAnAudioFileV1DubbingPost.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyEditVanityLinkAdminN8enylacgdVanityLinkVanityLinkIdUpdatePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyEditVoiceV1VoicesVoiceIdEditPost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodyGenerateARandomVoiceV1VoiceGenerationGenerateVoicePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.konfigthis.client.model.BodySpeechToSpeechStreamingV1SpeechToSpeechVoiceIdStreamPost.CustomTypeAdapterFactory());

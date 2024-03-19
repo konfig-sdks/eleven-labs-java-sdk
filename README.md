@@ -172,6 +172,12 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *PronunciationDictionaryApi* | [**createFromFile**](docs/PronunciationDictionaryApi.md#createFromFile) | **POST** /v1/pronunciation-dictionaries/add-from-file | Add A Pronunciation Dictionary
 *PronunciationDictionaryApi* | [**getMetadata**](docs/PronunciationDictionaryApi.md#getMetadata) | **GET** /v1/pronunciation-dictionaries/{pronunciation_dictionary_id} | Get Metadata For A Pronunciation Dictionary
+*AdminApi* | [**archiveCouponPromocodePost**](docs/AdminApi.md#archiveCouponPromocodePost) | **POST** /admin/n8enylacgd/coupon/{promocode}/archive | Archive Coupon
+*AdminApi* | [**editVanityLink**](docs/AdminApi.md#editVanityLink) | **POST** /admin/n8enylacgd/vanity-link/{vanity_link_id}/update | Edit Vanity Link
+*AdminApi* | [**getAllCoupons**](docs/AdminApi.md#getAllCoupons) | **GET** /admin/n8enylacgd/coupons | Get All Coupons
+*AdminApi* | [**getAllVanityLinks**](docs/AdminApi.md#getAllVanityLinks) | **GET** /admin/n8enylacgd/vanity-links | Get All Vanity Links
+*AdminApi* | [**getVanityLink**](docs/AdminApi.md#getVanityLink) | **GET** /admin/n8enylacgd/vanity-link/{slug} | Get Vanity Link
+*AdminApi* | [**removeVanityLink**](docs/AdminApi.md#removeVanityLink) | **POST** /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete | Delete Vanity Link
 *AudioNativeApi* | [**createProjectWithEmbeddableHtml**](docs/AudioNativeApi.md#createProjectWithEmbeddableHtml) | **POST** /v1/audio-native | Creates Audionative Enabled Project.
 *DubbingApi* | [**deleteProject**](docs/DubbingApi.md#deleteProject) | **DELETE** /v1/dubbing/{dubbing_id} | Delete Dubbing Project
 *DubbingApi* | [**fileInLanguage**](docs/DubbingApi.md#fileInLanguage) | **POST** /v1/dubbing | Dub A Video Or An Audio File
@@ -236,6 +242,7 @@ Class | Method | HTTP request | Description
  - [BodyCreatesAudioNativeEnabledProjectV1AudioNativePost](docs/BodyCreatesAudioNativeEnabledProjectV1AudioNativePost.md)
  - [BodyDownloadHistoryItemsV1HistoryDownloadPost](docs/BodyDownloadHistoryItemsV1HistoryDownloadPost.md)
  - [BodyDubAVideoOrAnAudioFileV1DubbingPost](docs/BodyDubAVideoOrAnAudioFileV1DubbingPost.md)
+ - [BodyEditVanityLinkAdminN8enylacgdVanityLinkVanityLinkIdUpdatePost](docs/BodyEditVanityLinkAdminN8enylacgdVanityLinkVanityLinkIdUpdatePost.md)
  - [BodyEditVoiceV1VoicesVoiceIdEditPost](docs/BodyEditVoiceV1VoicesVoiceIdEditPost.md)
  - [BodyGenerateARandomVoiceV1VoiceGenerationGenerateVoicePost](docs/BodyGenerateARandomVoiceV1VoiceGenerationGenerateVoicePost.md)
  - [BodySpeechToSpeechStreamingV1SpeechToSpeechVoiceIdStreamPost](docs/BodySpeechToSpeechStreamingV1SpeechToSpeechVoiceIdStreamPost.md)
